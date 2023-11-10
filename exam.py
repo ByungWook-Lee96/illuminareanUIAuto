@@ -7,6 +7,9 @@ from selenium.webdriver.common.keys import Keys  # 키보드 클릭할 때 쓸 �
 from selenium.webdriver.chrome.options import Options
 
 import time
+import random
+
+randomNum = random.randrange(1,100)
 
 # driver 옵션 추가(시스템에 부착된 장치가 작동하지 않습니다. 삭제하기 위한 옵션)
 options = Options()
@@ -25,7 +28,6 @@ driver = webdriver.Chrome(options=options)
 url = 'https://illuminarean.com/'
 driver.get(url)
 
-time.sleep(2)
 # 팝업이 노출될 수 있어서 팝업이 노출되면 클릭을 하고, 노출되지 않으면 해당 부분 지나감.
 try:
     element = WebDriverWait(driver, 10).until(
@@ -44,7 +46,7 @@ try:
     element.click()
 except Exception as e:
     print("Work 링크가 없습니다.")
-time.sleep(2)
+time.sleep(1)
 
 # [GOODVIBE WORKS 바로가기] 버튼 클릭(a링크)
 try:
@@ -67,7 +69,7 @@ try:
     element.click()
 except Exception as e:
     print("[무료 체험 신청하기] 버튼이 없습니다.")
-time.sleep(2)
+time.sleep(1)
 
 # 내용 입력 - 회사명
 try:
@@ -75,47 +77,114 @@ try:
         EC.presence_of_element_located((By.ID, 'companyName'))
     )
     element.clear()
-    element.send_keys('테스트회사')
+    element.send_keys(f'테스트회사{randomNum}')
 except Exception as e:
     print("내용 입력 - 회사명이 없습니다.")
 time.sleep(1)
 
 # 내용 입력 - 대표자명
-driver.find_element(By.ID,'ceoName').clear()
-driver.find_element(By.ID,'ceoName').send_keys('테스트이름')
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, 'ceoName'))
+    )
+    element.clear()
+    element.send_keys(f'테스트이름{randomNum}')
+except Exception as e:
+    print("내용 입력 - 대표자명이 없습니다.")
 time.sleep(1)
 
 # 내용 선택 - 사업자 유형(개인)
-driver.find_element(By.ID,'businessType').click()
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, 'businessType'))
+    )
+    element.click()
+except Exception as e:
+    print("내용 선택 - 사업자 유형이 없습니다.")
 time.sleep(1)
-driver.find_element(By.XPATH,"//*[text()='개인']").click()
+
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,"//*[text()='개인']"))
+    )
+    element.click()
+    if element.text == '개인':
+        print("선택된 값은 개인입니다.")
+    else:
+        print(f"선택된 값은 개인이 아닌 {element.text} 입니다.")
+except Exception as e:
+    print("내용 선택 - 사업자 유형에 '개인'이 없습니다.")
 time.sleep(1)
 
 
 # 내용 선택 - 직원수(21-50명)
-driver.find_element(By.ID,'scale').click()
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, 'scale'))
+    )
+    element.click()
+except Exception as e:
+    print("내용 선택 - 직원수가 없습니다.")
 time.sleep(1)
-driver.find_element(By.XPATH,"//*[text()='51-100 명']").click()
+
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,"//*[text()='51-100 명']"))
+    )
+    element.click()
+    if element.text == '51-100 명':
+        print("선택된 값은 51-100 명입니다.")
+    else:
+        print(f"선택된 값은 '51-100 명'이 아닌 {element.text} 입니다.")
+except Exception as e:
+    print("내용 선택 - 직원수에 '51-100 명'이 없습니다.")
 time.sleep(1)
 
 # 내용 입력 - 담당자명
-driver.find_element(By.ID,'name').clear()
-driver.find_element(By.ID,'name').send_keys('테스트담당자명')
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, 'name'))
+    )
+    element.clear()
+    element.send_keys(f'테스트담당자명{randomNum}')
+except Exception as e:
+    print("내용 입력 - 담당자명이 없습니다.")
 time.sleep(1)
 
 # 내용 입력 - 이메일
-driver.find_element(By.ID,'email').clear()
-driver.find_element(By.ID,'email').send_keys('test@test.com')
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, 'email'))
+    )
+    element.clear()
+    element.send_keys(f'test{randomNum}@test.com')
+except Exception as e:
+    print("내용 입력 - 이메일이 없습니다.")
 time.sleep(1)
 
 # 내용 입력 - 휴대폰 번호
-driver.find_element(By.ID,'mobile').clear()
-driver.find_element(By.ID,'mobile').send_keys('010-0000-0000')
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, 'mobile'))
+    )
+    element.clear()
+    element.send_keys('010-0000-0000') # 실제 번호가 있을 수 있어서 해당 부분은 randomNum을 사용하지 않음
+except Exception as e:
+    print("내용 입력 - 휴대폰 번호가 없습니다.")
 time.sleep(1)
+
 
 # 내용 선택 및 검색 - 담당 업무
 # 먼저 버튼 클릭
-driver.find_element(By.XPATH, '/html/body/div[5]/div/div/div/div/div/div/div/div[2]/dl[8]/dd/div/div[2]/button').click()
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[5]/div/div/div/div/div/div/div'
+                                                  '/div[2]/dl[8]/dd/div/div[2]/button'))
+    )
+    element.click()
+except Exception as e:
+    print("내용 선택 및 검색 - 담당 업무 버튼이 없습니다.")
+time.sleep(1)
 
 # 담당 업무명 선택
 try:
@@ -123,13 +192,24 @@ try:
         EC.presence_of_element_located((By.XPATH, "//button[text()='스타일리스트']"))
     )
     element.click()
+    if element.text == '스타일리스트':
+        print("선택된 값은 스타일리스트 입니다.")
+    else:
+        print(f"선택된 값은 '스타일리스트'이 아닌 {element.text} 입니다.")
 except Exception as e:
-    print("요소 로딩 대기 중에 오류가 발생했습니다.")
+    print("담당 업무명에 '스타일리스트'가 없습니다.")
 time.sleep(1)
 
 # 담당 업무명 검색
-driver.find_element(By.XPATH,'/html/body/div[5]/div/div/div/div/div/div/div/div[2]/dl[8]/dd/div/div[2]/button/p/div/input').clear()
-driver.find_element(By.XPATH,'/html/body/div[5]/div/div/div/div/div/div/div/div[2]/dl[8]/dd/div/div[2]/button/p/div/input').send_keys('대표')
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[5]/div/div/div/div/div/div/div/'
+                                                  'div[2]/dl[8]/dd/div/div[2]/button/p/div/input'))
+    )
+    element.clear()
+    element.send_keys('대표')
+except Exception as e:
+    print("담당 업무명 검색 input box가 없습니다.")
 time.sleep(1)
 
 try:
@@ -137,22 +217,54 @@ try:
         EC.presence_of_element_located((By.XPATH, "//button[text()='대표']"))
     )
     element.click()
+    if element.text == '대표':
+        print("선택된 값은 대표 입니다.")
+    else:
+        print(f"선택된 값은 '대표'이 아닌 {element.text} 입니다.")
 except Exception as e:
-    print("요소 로딩 대기 중에 오류가 발생했습니다.")
+    print("담당 업무명에 '대표'가 없습니다.")
 time.sleep(1)
 
 # 담당 업무명 [등록] 버튼 클릭
-driver.find_element(By.XPATH,"//button[text()='등록']").click()
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, "//button[text()='등록']"))
+    )
+    element.click()
+except Exception as e:
+    print("담당 업무명 [등록] 버튼이 없습니다.")
 time.sleep(1)
 
-# 약관 동의 체크박스 선택
-driver.find_element(By.ID,'agreeTermsOfUse').click()
-driver.find_element(By.ID,'agreePrivacyStatement').click()
+# 이용동의약관 체크박스 선택
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID,'agreeTermsOfUse'))
+    )
+    element.click()
+except Exception as e:
+    print("약관 동의 이용동의약관 이 없습니다.")
 time.sleep(1)
+
+# 개인정보동의약관 체크박스 선택
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID,'agreePrivacyStatement'))
+    )
+    element.click()
+except Exception as e:
+    print("약관 동의 개인정보동의약관 동의 체크박스가 없습니다.")
+time.sleep(1)
+
 
 # [신청 취소] 버튼 클릭
-driver.find_element(By.XPATH, '/html/body/div[6]/button').click()
-time.sleep(2)
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[6]/button'))
+    )
+    element.click()
+except Exception as e:
+    print("[신청 취소] 버튼이 없습니다.")
+time.sleep(1)
 
 # [신청 취소] 버튼 클릭 후 [확인] 버튼 클릭
 try:
@@ -161,6 +273,7 @@ try:
     )
     element.click()
 except Exception as e:
-    print("요소 로딩 대기 중에 오류가 발생했습니다.")
+    print("[신청 취소] 버튼 클릭 후 노출되는 팝업의 [확인] 버튼이 없습니다.")
 time.sleep(3)
+
 
