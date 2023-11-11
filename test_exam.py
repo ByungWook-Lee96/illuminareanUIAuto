@@ -1,64 +1,79 @@
 import unittest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
 import time
-import random
+import exam
+import create_driver
+
 
 class TestApplyService(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
-        # 웹 드라이버 초기화
-        options = Options()
-        options.add_experimental_option("excludeSwitches", ["enable-logging"])
-        options.add_argument("--start-maximized")
-        cls.driver = webdriver.Chrome(options=options)
+        # driver에 url 넣음
+        url = 'https://illuminarean.com/'
+        create_driver.driver.get(url)
+    @classmethod
+    def setUp(self):
+        time.sleep(1)
 
     @classmethod
     def tearDownClass(cls):
         # 드라이버 종료
-        cls.driver.quit()
+        create_driver.driver.quit()
 
-    def setUp(self):
-        # 테스트 메소드 실행 전에 실행되는 부분
-        randomNum = random.randrange(1, 100)
-        url = 'https://illuminarean.com/'
-        self.driver.get(url)
+    def test001(self):
+        exam.popup()
 
-        try:
-            # 팝업이 노출될 수 있어서 팝업이 노출되면 클릭을 하고, 노출되지 않으면 해당 부분 지나감.
-            element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.XPATH, '/html/body/div[4]/div/div/div/div/button[2]'))
-            )
-            element.click()
-        except Exception as e:
-            print("팝업의 요소가 없거나 팝업이 없음")
-        time.sleep(1)
+    def test002(self):
+        exam.click_work()
 
-    def test_apply_service(self):
-        # 예제로 'Work' 링크 클릭하는 부분 추가
-        try:
-            element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.LINK_TEXT, 'Work'))
-            )
-            element.click()
-        except Exception as e:
-            print("Work 링크가 없습니다.")
-        time.sleep(1)
+    def test003(self):
+        exam.click_goodvibe_works()
 
-        # [GOODVIBE WORKS 바로가기] 버튼 클릭(a링크)
-        try:
-            element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.LINK_TEXT, 'GOODVIBE WORKS 바로가기'))
-            )
-            element.click()
-        except Exception as e:
-            print("[GOODVIBE WORKS 바로가기] 버튼이 없습니다.")
-        time.sleep(1)
+    def test004(self):
+        exam.change_tab()
 
-        # 나머지 테스트 코드를 여기에 추가
+    def test005(self):
+        exam.click_apply()
+
+    def test006(self):
+        exam.input_company_name()
+
+    def test007(self):
+        exam.input_ceo_name()
+
+    def test008(self):
+        exam.select_business_type()
+
+    def test009(self):
+        exam.select_scale()
+
+    def test010(self):
+        exam.input_name()
+
+    def test011(self):
+        exam.input_email()
+
+    def test012(self):
+        exam.input_mobile()
+
+    def test013(self):
+        exam.select_responsibility()
+
+    def test014(self):
+        exam.search_responsibility()
+
+    def test015(self):
+        exam.click_registration()
+
+    def test016(self):
+        exam.click_agree_terms_of_use()
+
+    def test017(self):
+        exam.click_agree_privacy_statement()
+
+    def test018(self):
+        exam.click_unsubscribe_button()
+
 
 if __name__ == '__main__':
     unittest.main()
