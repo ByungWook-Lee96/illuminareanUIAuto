@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC  # 로딩될 �
 import create_driver
 
 
-# 팝업에서 [X] 버튼 클릭
+# 팝업에서 [X] 버튼 클릭_TC_2
 def popup():
     try:
         element = WebDriverWait(create_driver.driver, 10).until(
@@ -19,7 +19,7 @@ def popup():
     return result_message
 
 
-# Work 클릭
+# Work 클릭_TC_3
 def click_work():
     result_message = ""
     try:
@@ -39,7 +39,7 @@ def click_work():
     return result_message
 
 
-# [GOODVIBE WORKS 바로가기] 버튼 클릭
+# [GOODVIBE WORKS 바로가기] 버튼 클릭_TC_4
 def click_goodvibe_works():
     try:
         element = WebDriverWait(create_driver.driver, 10).until(
@@ -50,7 +50,7 @@ def click_goodvibe_works():
         print("[GOODVIBE WORKS 바로가기] 버튼이 없습니다.")
 
 
-# 드라이버의 탭을 새로운 탭으로 변경
+# 드라이버의 탭을 새로운 탭으로 변경_TC_4-1
 def change_tab():
     result_message = ""
     try:
@@ -68,7 +68,7 @@ def change_tab():
     return result_message
 
 
-# [무료 체험 신청하기] 버튼 클릭
+# [무료 체험 신청하기] 버튼 클릭_TC_5
 def click_apply():
     result_message = ""
     try:
@@ -88,7 +88,7 @@ def click_apply():
     return result_message
 
 
-# 내용 입력 - 회사명
+# 내용 입력 - 회사명_TC_6
 def input_company_name():
     result_message = ""
     try:
@@ -111,7 +111,7 @@ def input_company_name():
     return result_message
 
 
-# 내용 입력 - 대표자명
+# 내용 입력 - 대표자명_TC_7
 def input_ceo_name():
     result_message = ""
     try:
@@ -134,7 +134,7 @@ def input_ceo_name():
     return result_message
 
 
-# 내용 선택 - 사업자 유형(개인)
+# 내용 선택 - 사업자 유형(개인)_TC_8
 def select_business_type():
     result_message = ""
     try:
@@ -162,7 +162,7 @@ def select_business_type():
     return result_message
 
 
-# 내용 선택 - 직원수(21-50명)
+# 내용 선택 - 직원수(21-50명)_TC_9
 def select_scale():
     result_message = ""
     try:
@@ -179,7 +179,7 @@ def select_scale():
         )
         element.click()
 
-        if create_driver.driver.find_element(By.XPATH, '//*[@id="scale"]/div/div[1]/div').text == '51-100 명':
+        if create_driver.driver.find_element(By.XPATH, '//*[@id="scale"]/div/div[1]/div').text == "51-100 명":
             result_message = "select_scale() - PASS"
         else:
             result_message = f"select_scale() - Fail 선택된 값은 '51-100 명'이 아닌 {element.text} 입니다."
@@ -190,7 +190,7 @@ def select_scale():
     return result_message
 
 
-# 내용 입력 - 담당자명
+# 내용 입력 - 담당자명_TC_10
 def input_name():
     result_message = ""
     try:
@@ -212,7 +212,7 @@ def input_name():
     return result_message
 
 
-# 내용 입력 - 이메일
+# 내용 입력 - 이메일_TC_11
 def input_email():
     result_message = ""
     try:
@@ -235,7 +235,7 @@ def input_email():
     return result_message
 
 
-# 내용 입력 - 휴대폰 번호
+# 내용 입력 - 휴대폰 번호_TC_12
 def input_mobile():
     result_message = ""
     try:
@@ -257,10 +257,10 @@ def input_mobile():
     return result_message
 
 
-# 내용 선택 - 담당 업무
+# 내용 선택 - 담당 업무_TC_13
 def select_responsibility():
     result_message = ""
-    # 먼저 버튼 클릭
+    # [담당 업무] 버튼 클릭
     try:
         element = WebDriverWait(create_driver.driver, 10).until(
             EC.presence_of_element_located((By.XPATH, '/html/body/div[5]/div/div/div/div/div/div/div'
@@ -288,7 +288,7 @@ def select_responsibility():
     return result_message
 
 
-# 내용 검색 - 담당 업무
+# 내용 검색 - 담당 업무_TC_14
 def search_responsibility():
     result_message = ""
     try:
@@ -318,7 +318,7 @@ def search_responsibility():
     return result_message
 
 
-# 담당 업무명 [등록] 버튼 클릭
+# 담당 업무명 [등록] 버튼 클릭_TC_15
 def click_registration():
     result_message = ""
     try:
@@ -341,7 +341,7 @@ def click_registration():
     return result_message
 
 
-# 이용동의약관 체크박스 선택
+# 이용동의약관 체크박스 선택_TC_16
 def click_agree_terms_of_use():
     result_message = ""
     try:
@@ -362,7 +362,7 @@ def click_agree_terms_of_use():
     return result_message
 
 
-# 개인정보동의약관 체크박스 선택
+# 개인정보동의약관 체크박스 선택_TC_17
 def click_agree_privacy_statement():
     result_message = ""
     try:
@@ -383,7 +383,7 @@ def click_agree_privacy_statement():
     return result_message
 
 
-# [신청 취소] 버튼 클릭
+# [신청 취소] 버튼 클릭_TC_18,19
 def click_unsubscribe_button():
     result_message = ""
     try:
@@ -391,6 +391,12 @@ def click_unsubscribe_button():
             EC.presence_of_element_located((By.XPATH, '/html/body/div[6]/button'))
         )
         element.click()
+        if create_driver.driver.find_element(By.XPATH, "//button[text()='확인']").text == "확인":
+            print("신청 취소 alert 노출 - PASS")
+        else:
+            print("신청 취소 alert 노출 - Fail")
+
+
     except Exception as e:
         print("[신청 취소] 버튼이 없습니다.")
 
