@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait  # 로딩될 때까지 대기
 from selenium.webdriver.support import expected_conditions as EC  # 로딩될 때까지 대기
 import create_driver
-import logging
 
 
 # 팝업에서 [X] 버튼 클릭
