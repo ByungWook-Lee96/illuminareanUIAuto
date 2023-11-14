@@ -98,8 +98,8 @@ class TestApplyService(unittest.TestCase):
 if __name__ == '__main__':
     # 로그 생성하기 위해서 작성한 부분(pyCharm에서 실행하지 않고, 터미널에서 python3 test_exam.py 로 실행 시 test_log.txt 파일 생성됨)
     # os.getcwd()는 현재 작업 디렉토리를 얻기 위한 함수
-    log_file_path = os.path.join(os.getcwd(), 'test_log.txt')
-    logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    # log_file_path = os.path.join(os.getcwd(), 'test_log.txt')
+    # logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
     # 테스트 실행
     unittest.main()
