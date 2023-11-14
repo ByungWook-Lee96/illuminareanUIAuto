@@ -89,6 +89,6 @@ if __name__ == '__main__':
     # log_file_path = os.path.join(os.getcwd(), 'test_log.txt')
     # logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-    # 테스트 실행 - 2023-11-14-15:29
+    # 테스트 실행 - 2023-11-14-15:32
     unittest.main()
 
