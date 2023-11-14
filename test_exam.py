@@ -14,6 +14,11 @@ class TestApplyService(unittest.TestCase):
         url = 'https://illuminarean.com/'
         create_driver.driver.get(url)
 
+        if create_driver.driver.current_url == url:
+            print("TC_1_https://illuminarean.com 경로 접속 - PASS")
+        else:
+            print("TC_1_https://illuminarean.com 경로 접속 - Fail")
+
     @classmethod
     def setUp(self):
         time.sleep(1)
@@ -24,75 +29,58 @@ class TestApplyService(unittest.TestCase):
         create_driver.driver.quit()
 
     def test001(self):
-        result_message = exam.popup()
-        logging.info(result_message)
+        exam.popup()
 
     def test002(self):
-        result_message = exam.click_work()
-        logging.info(result_message)
+        exam.click_work()
 
     def test003(self):
         exam.click_goodvibe_works()
 
     def test004(self):
-        result_message = exam.change_tab()
-        logging.info(result_message)
+        exam.change_tab()
 
     def test005(self):
-        result_message = exam.click_apply()
-        logging.info(result_message)
+        exam.click_apply()
 
     def test006(self):
-        result_message = exam.input_company_name()
-        logging.info(result_message)
+        exam.input_company_name()
 
     def test007(self):
-        result_message = exam.input_ceo_name()
-        logging.info(result_message)
+        exam.input_ceo_name()
 
     def test008(self):
-        result_message = exam.select_business_type()
-        logging.info(result_message)
+        exam.select_business_type()
 
     def test009(self):
-        result_message = exam.select_scale()
-        logging.info(result_message)
+        exam.select_scale()
 
     def test010(self):
-        result_message = exam.input_name()
-        logging.info(result_message)
+        exam.input_name()
 
     def test011(self):
-        result_message = exam.input_email()
-        logging.info(result_message)
+        exam.input_email()
 
     def test012(self):
-        result_message = exam.input_mobile()
-        logging.info(result_message)
+        exam.input_mobile()
 
     def test013(self):
-        result_message = exam.select_responsibility()
-        logging.info(result_message)
+        exam.select_responsibility()
 
     def test014(self):
-        result_message = exam.search_responsibility()
-        logging.info(result_message)
+        exam.search_responsibility()
 
     def test015(self):
-        result_message = exam.click_registration()
-        logging.info(result_message)
+        exam.click_registration()
 
     def test016(self):
-        result_message = exam.click_agree_terms_of_use()
-        logging.info(result_message)
+        exam.click_agree_terms_of_use()
 
     def test017(self):
-        result_message = exam.click_agree_privacy_statement()
-        logging.info(result_message)
+        exam.click_agree_privacy_statement()
 
     def test018(self):
-        result_message = exam.click_unsubscribe_button()
-        logging.info(result_message)
+        exam.click_unsubscribe_button()
 
 
 if __name__ == '__main__':
