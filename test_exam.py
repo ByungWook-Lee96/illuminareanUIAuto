@@ -104,5 +104,3 @@ if __name__ == '__main__':
     # 테스트 실행
     unittest.main()
 
-    # 로그 파일 위치 출력
-    print("로그 파일 위치:", log_file_path)
