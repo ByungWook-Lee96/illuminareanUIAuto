@@ -8,5 +8,3 @@ testexam.py : exam.py 를 실행하고, 결과를 출력합니다.<br>
 [첨부 파일 설명] <br>
 시연동영상.mov : github main branch에 push를 할 경우 jenkins에서 자동으로 실행해주는 영상을 담았습니다.<br>
 Checklist.xlsx : 간단하게 Checklist로 과제 내용을 담아냈습니다.<br>
-
-감사합니다.
