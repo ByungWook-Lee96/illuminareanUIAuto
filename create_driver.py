@@ -11,6 +11,9 @@ options.add_experimental_option("excludeSwitches", ["enable-logging"])
 # driver 바로 꺼지지 않게 함.
 # options.add_experimental_option("detach", True)
 
+# # 화면 안보이고 진행되게 함
+# options.add_argument('--headless')
+
 # 전체화면 옵션
 options.add_argument("--start-maximized")
 
